@@ -74,7 +74,7 @@ const LoginForm = ({ handleLoginSuccess, setIsLoading  }) => {
 
 
     const handleGoogleLogin = async (credentialResponse) => {
-
+        setIsLoading(true);
         try {
             const credentialResponseDecoded = jwtDecode(credentialResponse.credential);
             console.log(credentialResponseDecoded);
@@ -106,6 +106,7 @@ const LoginForm = ({ handleLoginSuccess, setIsLoading  }) => {
                 });
 
                 setTimeout(() => {
+                    setIsLoading(false);
                     navigate("/auth/transactions");
                 }, 1000);
             } else {
@@ -127,6 +128,7 @@ const LoginForm = ({ handleLoginSuccess, setIsLoading  }) => {
                 duration: 3000,
                 isClosable: true,
             });
+            setIsLoading(false);
         }
     };
 
